@@ -1,0 +1,12 @@
+version: "2"
+services:
+    webapp:
+      build:
+        context: .
+        dockerfile: Dockerfile
+      ports:
+        - "8184:80"
+      volumes:
+        - .:/var/www  
+      external_links:
+        - mysql-dev:mysql
