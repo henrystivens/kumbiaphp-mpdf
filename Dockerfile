@@ -15,4 +15,9 @@ RUN apt-get update \
  && sed -i 's!/var/www/html!/var/www/default/public!g' /etc/apache2/apache2.conf \
  && sed -i 's!/var/www/html!/var/www/default/public!g' /etc/apache2/sites-available/000-default.conf
 
+ # Install Composer
+RUN curl -sS https://getcomposer.org/installer | php -- \
+        --install-dir=/usr/local/bin \
+        --filename=composer
+
 WORKDIR /var/www
