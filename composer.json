@@ -12,14 +12,7 @@
 		"source": "https://github.com/KumbiaPHP/KumbiaPHP"
     },
     "require": {
-        "php": ">=5.4"
-    },
-    "require-dev": {
-        "php": ">=5.4",
-        "phpunit/phpunit": ">=4.0",
-        "mockery/mockery": ">=0.9"
-    },
-    "config": {
-        "sort-packages": true
+        "php": ">=5.6",
+        "mpdf/mpdf": "7.1.1"
     }
 }
