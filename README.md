@@ -1,43 +1,66 @@
-![KumbiaPHP logo](https://rawgit.com/kumbiaphp/kumbiaphp/master/default/public/img/kumbiaphp.svg)
+Crear PDF con HTML y mPDF
+======
 
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/KumbiaPHP/KumbiaPHP/badges/quality-score.png)](https://scrutinizer-ci.com/g/KumbiaPHP/KumbiaPHP)
-[![Code Climate](https://codeclimate.com/github/KumbiaPHP/KumbiaPHP/badges/gpa.svg)](https://codeclimate.com/github/KumbiaPHP/KumbiaPHP)
-[![Slack](http://slack.kumbiaphp.com/badge.svg)](http://slack.kumbiaphp.com)
-![PHP7 ready](https://rawgit.com/kumbiaphp/kumbiaphp/master/default/public/img/php7.svg)
+Código del ejemplo para crear documentos PDF usando HTML con KumbiaPHP 1.0RC, del manual: [Crear documentos PDF usando HTML](https://www.kumbiaphp.com/blog/2018/07/09/crear-pdf-usando-html/)
 
-Fácil, rápido y en español
-(Or should I say fast and easy?)
+## Correr en Docker
 
----
-## Bienvenidos a KumbiaPHP Framework  Versión 1.0
+Como prerequisito debe tener instalado Docker en el sistema operatvo: [Obtener Docker](https://www.docker.com/products/overview)
 
-Manual en construcción de la 1.0:
+### 1. Correr mysql con datos externos y publicado
 
-Español: https://github.com/KumbiaPHP/Documentation/tree/master/es
+``
+docker run --detach --name=mysql-dev --env="MYSQL_ROOT_PASSWORD=root" --volume /home/usuario/mysql/data:/var/lib/mysql --publish 6603:3306 mysql:5.7
+``
 
-English: https://github.com/KumbiaPHP/Documentation/tree/master/en
+Cambia el valor del parámetro --volume por el directorio que desees
 
-Ayúdanos a traducir el manual al inglés: http://translate.kumbiaphp.com
+### 2. Importar base de datos
 
-## Slack KumbiaPHP Channel in spanish and english
-http://slack.kumbiaphp.com (new)
+Importar el archivo *default/app/config/sql/html_pdf_mpdf.sql*
 
-## Change Log
-* Requiere PHP 5.4 como mínimo, recomendado usar PHP 5.6, 7.0 o 7.1
-* CRUD: http://wiki.kumbiaphp.com/V1.0_CRUD_en_KumbiaPHP_Framework
+### 3. Correr Apache + PHP 7
 
-Comunidad
-===
-* https://www.kumbiaphp.com  Web oficial  (pronto en KumbiaPHP http://proto.kumbiaphp.com, bienvenida ayuda con el diseño).
-* http://wiki.kumbiaphp.com Wiki
-* http://foro.kumbiaphp.com Foro de KumbiaPHP
-* http://groups.google.com/group/kumbia/   Grupo de KumbiaPHP +1.500 programadores
-* https://twitter.com/KumbiaPHP Twitter
-* https://www.facebook.com/kumbia.fw/ Facebook page
-* http://slack.kumbiaphp.com  Slack (nuevo y recomendado)
-* irc://irc.freenode.org/#kumbiaphp  IRC [![Visita nuestro canal IRC channel](https://kiwiirc.com/buttons/irc.freenode.org/kumbiaphp.png)](https://kiwiirc.com/client/irc.freenode.org/?nick=invitado|?&theme=cli#kumbiaphp) Actualmente no usamos el IRC
-* Largo historial de repos durante estos años ;)  cvs(sf.net), svn(sf.net), bzr(launchpad.com) y ahora git(github.com)
+En la carpeta raíz de este proyecto correr:
 
-Licencia
-===
-New BSD
+``
+docker-compose up -d --build
+``
+
+o simplemente...
+
+``
+docker-compose up -d
+``
+
+Mirar la web en **http://localhost:8184**
+
+La opción ``--build``, es sólo para la primera vez o cuando se cambian los ficheros del docker.
+
+``docker-compose up`` (muestra el log en la terminal)
+
+``docker-compose up -d `` (como demonio, sin datos en la terminal)
+
+## Instalar mPDF con composer
+
+El contenedor actual ya viene con composer instalado y el archivo _composer.json_ 
+modificado para indicar la instalación mPDF en su versión 7
+
+Archivo: _composer.json_
+
+``
+{    
+    "require": {
+        "php": ">=5.6",
+        "mpdf/mpdf": "7.1.1"
+    }
+}
+``
+
+### 1. Igresar a la consola o bash del contenedor
+
+``docker exec -t -i kumbiaphpmpdf_webapp_1 bash``
+
+### 2. Ejecutar el comando
+
+``composer install``
