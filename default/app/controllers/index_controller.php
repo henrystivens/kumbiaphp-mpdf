@@ -20,11 +20,11 @@ class IndexController extends AppController
     {
         //Importante: Sin vista y sin tamplate
         View::select(null, null);
-        // Crea una instancia de la clase y le pasa el directorio default/app/temp/
+        //Crea una instancia de la clase y le pasa el directorio default/app/temp/
         $mpdf = new Mpdf(['tempDir' => APP_PATH . '/temp']);
-        // Escribe algo de contenido HTML:
+        //Escribe algo de contenido HTML:
         $mpdf->WriteHTML('¡Hola KumbiaPHP!');
-        // Envia un archivo PDF directamente al navegador
+        //Envia un archivo PDF directamente al navegador
         $mpdf->Output();
     }
 
@@ -33,7 +33,7 @@ class IndexController extends AppController
         //Importante: Sin vista y sin tamplate
         View::select(null, null);
         //Llama al ejemplo 2
-        PdfHtml::example2();
+        HtmlToPdf::example2();
     }
 
     public function example3($name = 'KumbiaPHP')
@@ -41,6 +41,6 @@ class IndexController extends AppController
         //Importante: Sin vista y sin tamplate
         View::select(null, null);
         //Llama al ejemplo 3, recibe como parámetro el nombre por GET
-        PdfHtml::example3($name);
+        HtmlToPdf::example3($name);
     }
 }
