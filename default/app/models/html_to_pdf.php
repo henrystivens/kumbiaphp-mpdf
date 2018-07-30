@@ -5,7 +5,7 @@
 
 use Mpdf\Mpdf;
 
-class PdfHtml {
+class HtmlToPdf {
 
     /**
      * Ejemplo 2:
@@ -39,8 +39,8 @@ class PdfHtml {
     {
         // Activa el almacenamiento en búfer de la salida
         ob_start();
-        // Carga el contenido del partial
-        View::partial('pdf/example3');
+        // Carga el contenido del partial pasandole datos
+        View::partial('pdf/example3', '', ['name' => $name, 'date' => date(DATE_ISO8601)]);
         // Obtiene en $html el contenido del búfer actual y elimina el búfer de salida actual
         $html = ob_get_clean();
         // Crea una instancia de la clase y le pasa el directorio temporal
