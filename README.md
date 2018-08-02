@@ -1,25 +1,13 @@
 Crear PDF con HTML y mPDF
 ======
 
-Código del ejemplo para crear documentos PDF usando HTML con KumbiaPHP 1.0RC, del manual: [Crear documentos PDF usando HTML](https://www.kumbiaphp.com/blog/2018/07/09/crear-pdf-usando-html/)
+Código del ejemplo para crear documentos PDF usando HTML con KumbiaPHP 1.0RC, del manual: [Crear documentos PDF usando HTML](https://www.kumbiaphp.com/blog/2018/08/06/crear-pdf-usando-html/)
 
 ## Correr en Docker
 
 Como prerequisito debe tener instalado Docker en el sistema operatvo: [Obtener Docker](https://www.docker.com/products/overview)
 
-### 1. Correr mysql con datos externos y publicado
-
-``
-docker run --detach --name=mysql-dev --env="MYSQL_ROOT_PASSWORD=root" --volume /home/usuario/mysql/data:/var/lib/mysql --publish 6603:3306 mysql:5.7
-``
-
-Cambia el valor del parámetro --volume por el directorio que desees
-
-### 2. Importar base de datos
-
-Importar el archivo *default/app/config/sql/html_pdf_mpdf.sql*
-
-### 3. Correr Apache + PHP 7
+### 1. Correr Apache + PHP 7
 
 En la carpeta raíz de este proyecto correr:
 
