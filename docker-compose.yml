@@ -7,6 +7,4 @@ services:
       ports:
         - "8184:80"
       volumes:
-        - .:/var/www  
-      external_links:
-        - mysql-dev:mysql
+        - .:/var/www        
